@@ -114,7 +114,7 @@ section { scroll-margin-top: 3.5rem; }
 
 /* Education */
 .schools { display: grid; grid-template-columns: minmax(0, auto) minmax(0, auto); justify-content: space-between; gap: 1.75rem clamp(2rem, 6vw, 6rem); }
-.school { display: grid; grid-template-rows: auto auto 1fr auto; gap: .375rem; min-width: 0; }
+.school { display: grid; grid-template-rows: auto auto 1fr auto auto; gap: .375rem; min-width: 0; }
 .school-dates { color: var(--muted); font-size: .9375rem; font-variant-numeric: tabular-nums; }
 .school h3 { font-size: 1.25rem; line-height: 1.2; }
 .gpa { display: flex; align-items: baseline; gap: .35rem; margin-top: .25rem; }
@@ -169,6 +169,18 @@ section { scroll-margin-top: 3.5rem; }
 .tl-where { font-size: .875rem; line-height: 1.35; color: var(--muted); }
 .tl a:hover .tl-what { color: var(--accent); }
 
+/* Skills: label column and text column, matching the publication rows */
+.skills { display: grid; margin: 0; }
+.skill-row {
+  display: grid; grid-template-columns: var(--meta-col) minmax(0, 46rem); justify-content: space-between;
+  gap: .25rem 2.5rem; padding-block: .875rem; border-top: 1px solid var(--rule);
+}
+.skill-row:last-child { border-bottom: 1px solid var(--rule); }
+.skills dt { font-weight: 700; }
+.skills dd { margin: 0; }
+.school-courses { color: var(--muted); font-size: .9375rem; line-height: 1.45; max-width: 34rem; }
+.school-courses b { color: var(--ink); font-weight: 700; }
+
 /* Projects */
 .projects { display: grid; }
 .project {
@@ -208,7 +220,7 @@ section { scroll-margin-top: 3.5rem; }
 .contact-foot { margin-top: clamp(2rem, 4vw, 3rem); font-size: .875rem; color: var(--on-flood-soft); }
 
 @media (max-width: 900px) {
-  .paper, .project { grid-template-columns: minmax(0, 1fr); }
+  .paper, .project, .skill-row { grid-template-columns: minmax(0, 1fr); }
   .points { max-width: 72ch; }
   .project-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem 1rem; }
   .project-place, .project-people { flex-basis: 100%; }
@@ -239,7 +251,7 @@ section { scroll-margin-top: 3.5rem; }
   .tl-what { font-size: .875rem; }
   .tl-where { font-size: .8125rem; }
   .hero-top { font-size: .6875rem; letter-spacing: .08em; }
-  .nav-links { font-size: .9375rem; gap: .75rem; scrollbar-width: none; }
+  .nav-links { font-size: .875rem; gap: .55rem; scrollbar-width: none; }
 }
 @media (max-width: 600px) {
   .orbit { height: 17rem; }
@@ -259,6 +271,7 @@ section { scroll-margin-top: 3.5rem; }
       <a href="#education">Education</a>
       <a href="#publication">Publication</a>
       <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -282,7 +295,7 @@ section { scroll-margin-top: 3.5rem; }
   <section class="band" id="interests">
     <div class="wrap">
       <div class="band-head"><h2>Research Interests</h2></div>
-      <p class="interests-lead">My research explores how AI shapes human cognition, emotions, and social relationships, with a focus on designing human-centered AI that supports human agency, well-being, and flourishing.</p>
+      <p class="interests-lead">My research interests lie in understanding how AI shapes people's perceptions, social relationships, and well-being. Through empirical research, I aim to deepen our understanding of human–AI interaction and contribute to the development of AI technologies that promote human flourishing.</p>
       <div class="orbit" id="orbit">
         <canvas id="orbit-lines" aria-hidden="true"></canvas>
         <ul class="interests">
@@ -299,16 +312,18 @@ section { scroll-margin-top: 3.5rem; }
       <div class="band-head"><h2>Education</h2></div>
       <div class="schools">
         <article class="school cornell">
-          <p class="school-dates">August 2025 – May 2027 · Ithaca, NY</p>
+          <p class="school-dates">August 2025 – May 2027 (expected) · Ithaca, NY</p>
           <h3>Cornell University</h3>
           <p>Bachelor of Science in Computer Information Science<br>Cornell Bowers CIS &amp; CALS</p>
-          <p class="gpa"><b>4.09</b><span>/ 4.0 GPA</span></p>
+          <p class="gpa"><b>4.09</b><span>/ 4.00 GPA</span></p>
+          <p class="school-courses"><b>Courses</b> UI/UX Design, HCI, Computer-Mediated Communication, Human–AI Interaction, Computing, OOP, Data Structures, Networks, Statistics</p>
         </article>
         <article class="school uci">
           <p class="school-dates">September 2023 – June 2025 · Irvine, CA</p>
           <h3>University of California, Irvine</h3>
           <p>Bachelor of Science in Mathematics of Computation</p>
           <p class="gpa"><b>3.907</b><span>/ 4.00 GPA</span></p>
+          <p class="school-courses"><b>Courses</b> Linear Algebra, Calculus, Boolean Logic &amp; Discrete Structures, HCI, Programming</p>
         </article>
       </div>
     </div>
@@ -320,12 +335,12 @@ section { scroll-margin-top: 3.5rem; }
       <article class="paper">
         <div class="paper-meta">
           <p class="paper-venue">CHI 2027</p>
-          <span class="pill live">Under review</span>
+          <span class="pill live">Major revision</span>
         </div>
         <div>
           <h3>“Positive Content is A Default Yes”: Competing Claims to Consent for Likeness Use between AI Video Creators and Social Media Influencers</h3>
           <p class="paper-authors">Eun Jeong Kang, Yadi Wang, Jane Im, <strong>Yifan Niu</strong>, and Susan R. Fussell</p>
-          <p class="paper-where">Conference paper submitted to the ACM CHI Conference on Human Factors in Computing Systems.</p>
+          <p class="paper-where">Submitted to the ACM CHI Conference on Human Factors in Computing Systems (CHI 2027). Major revision; passed first-round review.</p>
         </div>
       </article>
     </div>
@@ -340,7 +355,7 @@ section { scroll-margin-top: 3.5rem; }
 
       <ol class="tl">
         <li class="tl-school tl-cornell"><a href="#education"><span class="tl-when">Aug 2025 – May 2027</span><span class="tl-what">B.S. in Computer Information Science</span><span class="tl-where">Cornell University</span></a></li>
-        <li class="tl-item" style="grid-row:1"><a href="#continuity"><span class="tl-when">Aug 2026 – Present</span><span class="tl-what">AI Update Strategies for Relational Continuity</span><span class="tl-where">Cornell University</span></a></li>
+        <li class="tl-item" style="grid-row:1"><a href="#continuity"><span class="tl-when">2026 – Present</span><span class="tl-what">Identity Discontinuity in AI Companions</span><span class="tl-where">Cornell University</span></a></li>
         <li class="tl-item" style="grid-row:2"><a href="#likeness"><span class="tl-when">May 2026 – Sep 2026</span><span class="tl-what">Consent for Likeness Use in AI Video</span><span class="tl-where">Cornell University</span></a></li>
         <li class="tl-item" style="grid-row:3"><a href="#occupations"><span class="tl-when">Jan 2026 – Present</span><span class="tl-what">Representation in AI-Generated Occupational Images</span><span class="tl-where">Cornell University</span></a></li>
         <li class="tl-item" style="grid-row:4"><a href="#asl"><span class="tl-when">Aug 2025 – Dec 2025</span><span class="tl-what">Acoustic-Based Wearable Technology for ASL</span><span class="tl-where">Cornell University</span></a></li>
@@ -352,21 +367,20 @@ section { scroll-margin-top: 3.5rem; }
         <article class="project" id="continuity">
           <div class="project-meta">
             <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8c13 0 24 9 24 23S45 56 31 56 8 45 8 31 19 8 32 8Z"/><path d="M33 12c12-1 21 8 20 20s-10 21-23 20S11 43 12 31s9-18 21-19Z"/><path d="M31 18c8 0 15 6 14 14s-6 13-14 13-13-6-13-14 5-13 13-13Z"/></svg>
-            <p class="project-dates">August 2026 – Present</p>
+            <p class="project-dates">2026 – Present</p>
             <span class="pill live">Ongoing</span>
             <p class="project-place">Cornell University, Ann S. Bowers College of Computing and Information Science · Ithaca, NY</p>
-            <p class="project-people">Advisor: Susan R. Fussell</p>
+            <p class="project-people">Advisor: Prof. Susan R. Fussell</p>
           </div>
           <div class="project-body">
-            <p class="label project-role">Researcher</p>
-            <h3>Understanding and Developing AI Update Strategies for Relational Continuity</h3>
+            <p class="label project-role">Undergraduate Researcher</p>
+            <h3>Understanding Identity Discontinuity in AI Companions Following Model Updates</h3>
             <p class="project-note">Preparing submission to CHI 2027 Student Research Competition (January 2027)</p>
             <ul class="points">
-              <li>Investigating how AI model updates affect users' perceptions of identity continuity, relational stability, and trust in human–AI relationships.</li>
-              <li>Analyzing user narratives about AI model updates to identify valued relational qualities and behavioral changes that lead users to perceive an AI as fundamentally different or no longer the same.</li>
-              <li>Developing a framework to distinguish identity-related characteristics that users value from behaviors that may require modification for safety, reliability, or other system improvements.</li>
-              <li>Designing an AI-based evaluation agent to systematically compare model behaviors across updates, identify potential disruptions to relational continuity, and assess trade-offs between user preferences and safety requirements.</li>
-              <li>Exploring user-centered update strategies, including behavioral continuity mechanisms and transition designs, to help users adapt to unavoidable AI changes while preserving valued aspects of human–AI relationships.</li>
+              <li>Conducting an independent qualitative study of approximately 500 Reddit posts across five AI companion communities to investigate how users perceive identity continuity following model updates and service discontinuations.</li>
+              <li>Using event-specific sampling, relevance screening, and open coding to examine how shared memories, personality, underlying models, and interaction patterns shape users' judgments of AI companion identity.</li>
+              <li>Developing a conceptual framework that distinguishes perceived changes in AI companions from judgments of identity discontinuity, providing a foundation for designing AI update strategies.</li>
+              <li>Exploring development implications for future AI agents that support relational transitions through transparent communication, memory preservation, and user choice, while balancing relational continuity, autonomy, and long-term well-being.</li>
             </ul>
           </div>
         </article>
@@ -375,19 +389,20 @@ section { scroll-margin-top: 3.5rem; }
           <div class="project-meta">
             <svg class="glyph" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="24" cy="32" rx="15" ry="22"/><ellipse cx="40" cy="32" rx="15" ry="22" stroke-dasharray="3 3"/><circle class="solid" cx="24" cy="26" r="1.6"/><circle class="solid" cx="40" cy="26" r="1.6"/></svg>
             <p class="project-dates">May 2026 – September 2026</p>
-            <span class="pill past">Concluded</span>
+            <span class="pill live">In revision</span>
             <p class="project-place">Cornell University, Ann S. Bowers College of Computing and Information Science · Ithaca, NY</p>
             <p class="project-people">Advisor: Susan R. Fussell<br>Research Lead: Eun Jeong Kang</p>
           </div>
           <div class="project-body">
             <p class="label project-role">Researcher</p>
-            <h3>“Positive Content is A Default Yes”: Competing Claims to Consent for Likeness Use between AI Video Creators and Social Media Influencers</h3>
+            <h3>“Positive Content is A Default Yes”: Consent for Likeness Use between AI Video Creators and Social Media Influencers</h3>
             <p class="project-note">Sole undergraduate researcher on the project team</p>
             <ul class="points">
-              <li>Conducted qualitative analysis of semi-structured interviews with 31 participants, including 17 AI video creators and 14 social media influencers, to examine competing understandings of consent and likeness use in AI-generated videos.</li>
-              <li>Reviewed and refined qualitative coding schemes, identifying differences in perceived ownership, consent expectations, creative freedom, and responsibility across stakeholder groups.</li>
-              <li>Performed quantitative survey analysis and visualization to complement interview findings and examine stakeholder attitudes toward AI-generated likeness.</li>
-              <li>Contributed to manuscript development and the translation of empirical findings into design and policy implications for responsible generative AI platforms.</li>
+              <li>Investigated how AI video creators and social media influencers understand consent for AI-generated likeness use through semi-structured interviews with 31 participants (17 creators, 14 influencers).</li>
+              <li>Contributed to participant recruitment, interview observation, qualitative coding, and quantitative analysis.</li>
+              <li>Reviewed and refined ambiguous qualitative codes, shifting the analysis from whether participants approved of a given use to the reasoning behind their judgments.</li>
+              <li>Identified a consent gap: 11 influencers opposed unauthorized fan use of their likeness, yet only 3 creators reported having sought permission; creators judged legitimacy by whether content was positive or harmless, whereas influencers emphasized consent and control over their representation.</li>
+              <li>Contributing to the manuscript revision following a Major Revisions decision at CHI 2027.</li>
             </ul>
           </div>
         </article>
@@ -405,11 +420,10 @@ section { scroll-margin-top: 3.5rem; }
             <h3>Effects of Gender and Racial Representation in AI-Generated Occupational Images</h3>
             <p class="project-note">Research in progress</p>
             <ul class="points">
-              <li>Investigated how gender and racial representation in AI-generated occupational images may influence people's perceptions of demographic distributions, occupational stereotypes, and social reality.</li>
-              <li>Developed a human-subjects study examining whether exposure to demographically biased AI-generated images shapes participants' beliefs about the gender and racial composition of different occupations.</li>
-              <li>Contributed to the operationalization of abstract constructs, including occupational perceptions and social bias, into measurable survey questions and behavioral outcomes.</li>
-              <li>Examined how representational biases in generative AI may extend beyond model outputs to influence users' social judgments and perceptions of occupational demographics.</li>
-              <li>Currently planning follow-up behavioral experiments to further investigate how exposure to biased AI-generated representations affects participants' perceptions, judgments, and attitudes.</li>
+              <li>Audited three image-generation models across twelve occupations to examine gender and racial representation in AI-generated occupational images.</li>
+              <li>Conducted a randomized 2 × 2 experiment manipulating gender and racial representation to test how AI-generated images shape occupational perceptions; contributed to the literature review, survey design, recruitment, and quantitative analysis.</li>
+              <li>Found that greater female representation was associated with higher ratings of how valued participants believed their own gender group would be in an occupation, suggesting AI-generated content may shape social perceptions rather than simply mirror existing biases.</li>
+              <li>Conducting a follow-up study with behavioral measures, including voluntary career exploration and time spent seeking career-related information, to test whether shifts in perceived inclusion translate into actual decisions.</li>
             </ul>
           </div>
         </article>
@@ -426,10 +440,10 @@ section { scroll-margin-top: 3.5rem; }
             <p class="label project-role">Research Assistant</p>
             <h3>Acoustic-Based Wearable Technology for American Sign Language Communication</h3>
             <ul class="points">
-              <li>Assisted in developing an ASL communication system integrating wearable sensing technologies for fingerspelling recognition and acoustic-based facial movement tracking.</li>
-              <li>Implemented software modules for device operation and sensor data collection, supporting system development and experimental testing.</li>
-              <li>Conducted recognition accuracy evaluations and assisted with data analysis to assess the performance of the wearable interface.</li>
-              <li>Supported the integration and testing of word-level recognition and non-manual signals, including facial expressions relevant to ASL communication.</li>
+              <li>Assisted in developing an ASL communication system integrating wearable sensing for fingerspelling recognition and acoustic-based facial movement tracking.</li>
+              <li>Implemented software modules for device operation and sensor data collection.</li>
+              <li>Conducted recognition accuracy evaluations and data analysis to assess the wearable interface.</li>
+              <li>Supported integration and testing of word-level recognition and non-manual signals, including facial expressions relevant to ASL.</li>
             </ul>
           </div>
         </article>
@@ -446,14 +460,28 @@ section { scroll-margin-top: 3.5rem; }
             <p class="label project-role">Developer and Researcher</p>
             <h3>AI-Driven Automatic Cinematic Camera Control</h3>
             <ul class="points">
-              <li>Developed AI-driven cinematic camera control methods integrating reinforcement learning and diffusion models to automatically generate camera trajectories in virtual environments.</li>
-              <li>Applied transformer-based architectures to model temporal dependencies in camera movement and improve the smoothness and coherence of generated cinematic sequences.</li>
-              <li>Created more than 10 realistic 3D environments using UnrealCV and CAD-based assets to simulate varied filming scenarios and evaluate algorithm performance.</li>
-              <li>Deployed trained models to AWS EC2 using Docker containers and implemented automated testing and deployment workflows to support reproducible experimentation.</li>
+              <li>Developed cinematic camera control methods combining reinforcement learning and diffusion models to generate camera trajectories in virtual environments.</li>
+              <li>Applied transformer-based architectures to model temporal dependencies in camera movement, improving the smoothness and coherence of generated sequences.</li>
+              <li>Created 10+ realistic 3D environments with UnrealCV and CAD-based assets to simulate filming scenarios and evaluate algorithms.</li>
+              <li>Deployed trained models to AWS EC2 with Docker and built automated testing and deployment workflows for reproducible experiments.</li>
             </ul>
           </div>
         </article>
       </div>
+    </div>
+  </section>
+  <section class="band" id="skills">
+    <div class="wrap">
+      <div class="band-head"><h2>Skills</h2></div>
+      <dl class="skills">
+        <div class="skill-row"><dt>Qualitative Research</dt><dd>Semi-structured interviews, open coding, codebook development and refinement, online community discourse analysis, purposive sampling</dd></div>
+        <div class="skill-row"><dt>Quantitative &amp; Experimental Research</dt><dd>Factorial experimental design, survey design, AI model auditing, statistical analysis, data visualization</dd></div>
+        <div class="skill-row"><dt>Programming</dt><dd>Python (pandas, statsmodels), R, C, C#, JavaScript, MATLAB, HTML/CSS, LaTeX</dd></div>
+        <div class="skill-row"><dt>Tools &amp; Platforms</dt><dd>Qualtrics, SPSS, MAXQDA, Figma, Unity, Arduino IDE, Docker, AWS</dd></div>
+        <div class="skill-row"><dt>AI &amp; Machine Learning</dt><dd>Reinforcement learning, diffusion models, transformers</dd></div>
+        <div class="skill-row"><dt>Languages</dt><dd>Mandarin Chinese (native), English (fluent), Japanese (elementary)</dd></div>
+        <div class="skill-row"><dt>Interests</dt><dd>Photography, screenwriting, fiction and creative writing</dd></div>
+      </dl>
     </div>
   </section>
 </main>
@@ -686,7 +714,7 @@ section { scroll-margin-top: 3.5rem; }
         });
       });
     }, { rootMargin: '-30% 0px -65% 0px' });
-    ['interests', 'education', 'publication', 'research', 'contact'].forEach(function (id) {
+    ['interests', 'education', 'publication', 'research', 'skills', 'contact'].forEach(function (id) {
       spy.observe(document.getElementById(id));
     });
   }
