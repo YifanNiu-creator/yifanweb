@@ -181,6 +181,37 @@ section { scroll-margin-top: 3.5rem; }
 .school-courses { color: var(--muted); font-size: .9375rem; line-height: 1.45; max-width: 34rem; }
 .school-courses b { color: var(--ink); font-weight: 700; }
 
+/* Projects on the home page: cover cards */
+.proj-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 2rem clamp(1.25rem, 3vw, 2.25rem); }
+.proj-card { display: grid; align-content: start; gap: .45rem; text-decoration: none; min-width: 0; }
+.proj-card img {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--rule); margin-bottom: .45rem; transition: transform .25s, box-shadow .25s;
+}
+.proj-card:hover img { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--rule-strong), 0 10px 24px -14px rgba(42, 20, 24, .45); }
+.proj-meta { font-size: .875rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .5rem; }
+.proj-meta .status { font-style: normal; font-size: .75rem; font-weight: 700; padding: .05rem .55rem; border-radius: 999px; line-height: 1.6; white-space: nowrap; }
+.proj-meta .status.done { background: var(--past-bg); color: var(--muted); }
+.proj-meta .status.now { background: var(--flood); color: var(--on-flood); }
+.proj-card b { font-size: 1.25rem; line-height: 1.2; }
+.proj-card:hover b { color: var(--accent); }
+.proj-sum { color: var(--muted); }
+
+/* Projects teaser */
+.proj-rows { display: grid; }
+.proj-row {
+  display: grid; grid-template-columns: var(--meta-col) minmax(0, 46rem) auto; justify-content: space-between; align-items: baseline;
+  gap: .25rem 2.5rem; padding-block: 1rem; border-top: 1px solid var(--rule); text-decoration: none;
+}
+.proj-row:last-child { border-bottom: 1px solid var(--rule); }
+.proj-row b { font-size: 1.1875rem; }
+.proj-row span { color: var(--muted); }
+.proj-row i { font-style: normal; color: var(--accent); transition: transform .2s; }
+.proj-row:hover b { color: var(--accent); }
+.proj-row:hover i { transform: translateX(5px); }
+.all-projects { display: inline-block; margin-top: 1.25rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+.all-projects:hover { text-decoration: underline; }
+
 /* Projects */
 .projects { display: grid; }
 .project {
@@ -201,6 +232,12 @@ section { scroll-margin-top: 3.5rem; }
 .project-role { color: var(--muted); }
 .project h3 { font-size: clamp(1.1875rem, 1.7vw, 1.375rem); line-height: 1.16; }
 .project-note { font-weight: 700; }
+.project-award {
+  justify-self: start; display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 700; font-size: .9375rem; color: var(--accent);
+  padding: .3rem .85rem; border-radius: 999px; background: var(--past-bg);
+}
+.project-award::before { content: "★"; font-size: .875rem; }
 .points { display: grid; gap: .625rem; }
 .points li { padding-left: 1.125rem; position: relative; }
 .points li::before { content: ""; position: absolute; left: 0; top: .72em; width: .55rem; height: 1px; background: var(--accent); }
@@ -221,6 +258,9 @@ section { scroll-margin-top: 3.5rem; }
 
 @media (max-width: 900px) {
   .paper, .project, .skill-row { grid-template-columns: minmax(0, 1fr); }
+  .proj-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .proj-row span { grid-column: 1; }
+  .proj-row i { grid-column: 2; grid-row: 1; }
   .points { max-width: 72ch; }
   .project-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem 1rem; }
   .project-place, .project-people { flex-basis: 100%; }
@@ -251,14 +291,14 @@ section { scroll-margin-top: 3.5rem; }
   .tl-what { font-size: .875rem; }
   .tl-where { font-size: .8125rem; }
   .hero-top { font-size: .6875rem; letter-spacing: .08em; }
-  .nav-links { font-size: .875rem; gap: .55rem; scrollbar-width: none; }
+  .nav-links { font-size: .875rem; gap: .2rem .7rem; flex-wrap: wrap; }
 }
 @media (max-width: 600px) {
   .orbit { height: 17rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .tl-item::after { transition: none; }
+  .tl-item::after, .proj-row i, .proj-card img { transition: none; }
 }
 </style>
 </head>
@@ -271,6 +311,7 @@ section { scroll-margin-top: 3.5rem; }
       <a href="#education">Education</a>
       <a href="#publication">Publication</a>
       <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
@@ -375,6 +416,7 @@ section { scroll-margin-top: 3.5rem; }
           <div class="project-body">
             <p class="label project-role">Undergraduate Researcher</p>
             <h3>Understanding Identity Discontinuity in AI Companions Following Model Updates</h3>
+            <p class="project-award">Received the CALS Undergraduate Research Funding Award · November 12, 2026</p>
             <ul class="points">
               <li>Conducting an independent qualitative study of approximately 500 Reddit posts across five AI companion communities to investigate how users perceive identity continuity following model updates and service discontinuations.</li>
               <li>Using event-specific sampling, relevance screening, and open coding to examine how shared memories, personality, underlying models, and interaction patterns shape users' judgments of AI companion identity.</li>
@@ -470,12 +512,41 @@ section { scroll-margin-top: 3.5rem; }
       </div>
     </div>
   </section>
+  <section class="band" id="projects">
+    <div class="wrap">
+      <div class="band-head">
+        <h2>Projects</h2>
+        <p>UI/UX design work alongside my research.</p>
+      </div>
+      <div class="proj-cards">
+        <a class="proj-card" href="tower-of-the-tail.html">
+          <img src="images/projects/tower-of-the-tail.jpg" alt="Tower of the Tail key art: Klutz the mouse climbing a vine beside the game title" width="1200" height="675" loading="lazy">
+          <span class="proj-meta">UI/UX design · Game <i class="status done">2026 · Completed</i></span>
+          <b>Tower of the Tail</b>
+          <span class="proj-sum">UI/UX and character art for a desktop platformer-strategy game, shown at the Cornell GDIAC 2026 Showcase.</span>
+        </a>
+        <a class="proj-card" href="munch-match.html">
+          <img src="images/projects/munch-match.jpg" alt="Munch Match app screens: the health log, recipe explorer, and weekly cooking challenge" width="1200" height="667" loading="lazy">
+          <span class="proj-meta">UI/UX design · Mobile app <i class="status done">2024 · Completed</i></span>
+          <b>Munch Match</b>
+          <span class="proj-sum">A nutrition-tracking app for college students. I led the user interviews and the UI/UX design.</span>
+        </a>
+        <a class="proj-card" href="info-1300-web-design.html">
+          <img src="images/projects/cornell-winter-survival.jpg" alt="Cornell Winter Survival Kit mobile screens beside the project title card" width="1200" height="676" loading="lazy">
+          <span class="proj-meta">UI/UX design · Website <i class="status now">2026 · In progress</i></span>
+          <b>Cornell Winter Survival Kit</b>
+          <span class="proj-sum">A website that helps students new to cold winters prepare for, and enjoy, Ithaca. Built for INFO 1300.</span>
+        </a>
+      </div>
+    </div>
+  </section>
   <section class="band" id="skills">
     <div class="wrap">
       <div class="band-head"><h2>Skills</h2></div>
       <dl class="skills">
         <div class="skill-row"><dt>Qualitative Research</dt><dd>Semi-structured interviews, open coding, codebook development and refinement, online community discourse analysis, purposive sampling</dd></div>
         <div class="skill-row"><dt>Quantitative &amp; Experimental Research</dt><dd>Factorial experimental design, survey design, AI model auditing, statistical analysis, data visualization</dd></div>
+        <div class="skill-row"><dt>UI/UX Design</dt><dd>User interviews, personas and storyboards, card sorting and information architecture, wireframing, high-fidelity prototyping, usability testing, responsive web design, game UI and character art (Figma, Procreate, Photoshop)</dd></div>
         <div class="skill-row"><dt>Programming</dt><dd>Python (pandas, statsmodels), R, C, C#, JavaScript, MATLAB, HTML/CSS, LaTeX</dd></div>
         <div class="skill-row"><dt>Tools &amp; Platforms</dt><dd>Qualtrics, SPSS, MAXQDA, Figma, Unity, Arduino IDE, Docker, AWS</dd></div>
         <div class="skill-row"><dt>AI &amp; Machine Learning</dt><dd>Reinforcement learning, diffusion models, transformers</dd></div>
@@ -688,6 +759,15 @@ section { scroll-margin-top: 3.5rem; }
     }
   })();
 
+  /* Arriving from another page with a #section link: jump there once the layout has settled */
+  function jumpToHash() {
+    if (!location.hash) return;
+    var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
+  jumpToHash();
+  window.addEventListener('load', jumpToHash);
+
   /* Copy the address, falling back to selecting it */
   var copy = document.getElementById('copy'), mail = document.getElementById('email');
   copy.addEventListener('click', function () {
@@ -714,7 +794,7 @@ section { scroll-margin-top: 3.5rem; }
         });
       });
     }, { rootMargin: '-30% 0px -65% 0px' });
-    ['interests', 'education', 'publication', 'research', 'skills', 'contact'].forEach(function (id) {
+    ['interests', 'education', 'publication', 'research', 'projects', 'skills', 'contact'].forEach(function (id) {
       spy.observe(document.getElementById(id));
     });
   }
