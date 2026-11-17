@@ -254,6 +254,14 @@ section { scroll-margin-top: 3.5rem; }
 }
 .copy-btn:hover { background: var(--on-flood); color: #6d1a2d; }
 .contact-more { display: flex; flex-wrap: wrap; gap: .5rem 2.5rem; margin-top: 1rem; color: var(--on-flood-soft); font-variant-numeric: tabular-nums; }
+.cv-btn {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.5rem; width: fit-content;
+  font-size: .9375rem; font-weight: 700; color: var(--on-flood); text-decoration: none;
+  border: 1.5px solid var(--on-flood-soft); border-radius: 999px; padding: .45rem 1.1rem;
+}
+.cv-btn:hover { background: var(--on-flood); color: #6d1a2d; }
+.cv-btn span { font-weight: 400; opacity: .8; }
+.contact-more a { color: inherit; }
 .contact-foot { margin-top: clamp(2rem, 4vw, 3rem); font-size: .875rem; color: var(--on-flood-soft); }
 
 @media (max-width: 900px) {
@@ -314,6 +322,7 @@ section { scroll-margin-top: 3.5rem; }
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <a href="Yifan_Niu_CV.pdf" target="_blank" rel="noopener">CV</a>
     </div>
   </div>
 </nav>
@@ -323,6 +332,7 @@ section { scroll-margin-top: 3.5rem; }
     <p class="hero-top label">Human–AI Interaction · Cornell University</p>
     <h1>Yifan Niu</h1>
     <p class="thesis">I'm currently an undergraduate student majoring in Information Science at Cornell University, where I have the opportunity to conduct research under the guidance of Professor Susan R. Fussell. I am currently preparing my applications to PhD programs for Fall 2027 admission, with the hope of continuing to pursue my academic and research interests through doctoral study.</p>
+    <a class="cv-btn" href="Yifan_Niu_CV.pdf" download="Yifan_Niu_CV.pdf">Download CV <span>PDF</span></a>
   </div>
   <div class="hero-visual" id="visual">
     <canvas id="figure" aria-hidden="true"></canvas>
@@ -336,7 +346,7 @@ section { scroll-margin-top: 3.5rem; }
   <section class="band" id="interests">
     <div class="wrap">
       <div class="band-head"><h2>Research Interests</h2></div>
-      <p class="interests-lead">My research interests lie in understanding how AI shapes people's perceptions, social relationships, and well-being. Through empirical research, I aim to deepen our understanding of human–AI interaction and contribute to the development of AI technologies that promote human flourishing.</p>
+      <p class="interests-lead">My research interests lie in understanding how people perceive, interpret, and respond to AI systems, and how these systems in turn shape their social relationships and behaviors. Through empirical studies, I aim to inform the design of AI systems that support long-term human well-being.</p>
       <div class="orbit" id="orbit">
         <canvas id="orbit-lines" aria-hidden="true"></canvas>
         <ul class="interests">
@@ -566,6 +576,7 @@ section { scroll-margin-top: 3.5rem; }
     </div>
     <div class="contact-more">
       <span>Ithaca, NY</span>
+      <a href="Yifan_Niu_CV.pdf" download="Yifan_Niu_CV.pdf">Download CV (PDF)</a>
     </div>
     <p class="contact-foot">Yifan Niu · Updated November 2026</p>
   </div>
